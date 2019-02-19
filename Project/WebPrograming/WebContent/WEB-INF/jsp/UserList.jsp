@@ -9,16 +9,16 @@
 <title>UserList</title>
 </head>
 <body>
-ユーザー名さん　　<a href="login.html">ログアウト</a>
+${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br>
 <h1 class="center">ユーザー覧</h1>
 
 <br><br>
-<a href="SignUp.html">新規登録</a>
+<a href="SignUpServlet">新規登録</a>
 <br><br>
 <form method="post" action="???">
 
-ログインID　　　<input type="text" name="ID">
+ログインID　　　<input type="text" name="loginId">
 
 <br><br>
 
@@ -55,6 +55,8 @@
 <td>大槻瑞貴</td>
 <td>1993年11月06日</td>
 <td>
+
+
 <input type="submit" name="submit1" value="　詳細　">
 <input type="submit" name="submit2" value="　更新　">
 <input type="submit" name="submit3" value="　削除　">

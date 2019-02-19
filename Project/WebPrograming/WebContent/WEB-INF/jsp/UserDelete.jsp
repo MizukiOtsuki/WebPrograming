@@ -10,7 +10,7 @@
 </head>
 <body>
 <br>
-ユーザー名さん　　<a href="login.html">ログアウト</a>
+${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br><br>
 <h1 class="center">ユーザー削除確認</h1>
 

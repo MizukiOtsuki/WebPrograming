@@ -29,7 +29,7 @@ public class updateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// ↓ フォワード login.jspを表示させる！
+		// ↓ フォワード update.jspを表示させる！
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/update.jsp");
 		dispatcher.forward(request, response);
 

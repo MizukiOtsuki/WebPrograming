@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
- * Servlet implementation class UserDataServlet
+ * Servlet implementation class UserDetailServlet
  */
 @WebServlet("/UserDataServlet")
 public class UserDataServlet extends HttpServlet {
@@ -28,18 +29,34 @@ public class UserDataServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// URLからGETパラメータとしてIDを受け取る
+		String id = request.getParameter("id");
 
-		// ↓ フォワード login.jspを表示させる！
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserData.jsp");
+		// 確認用：idをコンソールに出力
+		System.out.println(id);
+
+	}
+
+		// TODO  未実装：idを引数にして、idに紐づくユーザ情報を出力する
+
+		// TODO  未実装：ユーザ情報をリクエストスコープにセットしてjspにフォワード
+
+
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+			 // リクエストパラメータの文字コードを指定 文字化け防止！
+	      request.setCharacterEncoding("UTF-8");
+	      
+	      
+	
+		
+	      request.setAttribute("user", user);
+
+		// ユーザ一覧のjspにフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserList.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 
 }
+

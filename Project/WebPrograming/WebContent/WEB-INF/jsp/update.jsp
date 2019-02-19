@@ -11,7 +11,7 @@
 </head>
 <body>
 <br>
-ユーザー名さん　　<a href="login.html">ログアウト</a>
+${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br><br>
 <h1 class="center">ユーザー情報更新</h1>
 
@@ -31,7 +31,7 @@
 <br><br>
 <input type="submit" name="submit" value="　更新　">
 <br><br>
-<a href="UserList.html">戻る</a>
+<a href="UserListServlet">戻る</a>
 
 </body>
 </html>

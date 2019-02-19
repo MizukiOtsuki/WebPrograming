@@ -14,13 +14,20 @@
 
 <br><br>
 
-<form method="post" action="UserList.html">
+<c:if test="${errMsg != null}" >
 
-ログインID　　　<input type="text" name="ID">
+		  ${errMsg}
+
+	</c:if>
+
+
+<form action="loginServlet" method="post">
+
+ログインID　　　<input type="text" name="loginId">
 
 <br><br>
 
-パスワード　　　<input type="password" name="pass">
+パスワード　　　<input type="password" name="password">
 
 <br><br><br>
 
