@@ -40,6 +40,7 @@ public class loginServlet extends HttpServlet {
 
 	    if(session.getAttribute("userInfo") != null) {
 
+
 	    	// ユーザ一覧のサーブレットにリダイレクト
     		response.sendRedirect("UserListServlet");
     		return;
