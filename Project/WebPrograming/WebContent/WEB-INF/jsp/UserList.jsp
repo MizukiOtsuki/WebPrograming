@@ -16,7 +16,8 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br><br>
 <a href="SignUpServlet">新規登録</a>
 <br><br>
-<form method="post" action="???">
+
+<form method="post" action="UserListServlet">
 
 ログインID　　　<input type="text" name="loginId">
 
@@ -31,6 +32,8 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br><br>
 <input type="submit" value="　検索　">
 <br><br>
+
+
 </form>
 
 <table border="1">
@@ -40,38 +43,27 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <th>　生年月日　</th>
 <th>　　　　　　　　　</th>
 </tr>
+
+<c:forEach var="user" items="${userList}">
+
 <tr>
-<td>jsdlsdj</td>
-<td>山田太郎</td>
-<td>1996年08月23日</td>
-<td>
-<input type="submit" name="submit1" value="　詳細　">
-<input type="submit" name="submit2" value="　更新　">
-<input type="submit" name="submit3" value="　削除　">
-</td>
-</tr>
-<tr>
-<td>kdfdsd</td>
-<td>大槻瑞貴</td>
-<td>1993年11月06日</td>
+<td>${user.loginId}</td>
+<td>${user.name}</td>
+<td>${user.birthDate}</td>
 <td>
 
 
-<input type="submit" name="submit1" value="　詳細　">
-<input type="submit" name="submit2" value="　更新　">
-<input type="submit" name="submit3" value="　削除　">
+<input type="button" name="submit1" value="　詳細　" onclick="location.href='UserDataServlet?id=${user.loginId}'">
+<input type="button" name="submit2" value="　更新　" onclick="location.href='updateServlet?id=${user.loginId}'">
+<input type="submit" name="submit3" value="　削除　" onclick="location.href='UserDeleteServlet?id=${user.loginId}'">
 </td>
 </tr>
+
+</c:forEach>
+
+
 <tr>
-<td>kskslssss</td>
-<td>佐藤はな子</td>
-<td>1988年09月11日</td>
-<td>
-<input type="submit" name="submit1" value="　詳細　">
-<input type="submit" name="submit2" value="　更新　">
-<input type="submit" name="submit3" value="　削除　">
-</td>
-</tr>
+
 </table>
 
 </body>

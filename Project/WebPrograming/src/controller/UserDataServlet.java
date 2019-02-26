@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dao.UserDao;
+import model.User;
 
 /**
  * Servlet implementation class UserDetailServlet
@@ -22,41 +25,48 @@ public class UserDataServlet extends HttpServlet {
      */
     public UserDataServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// URLからGETパラメータとしてIDを受け取る
-		String id = request.getParameter("id");
-
-		// 確認用：idをコンソールに出力
-		System.out.println(id);
-
-	}
-
-		// TODO  未実装：idを引数にして、idに紐づくユーザ情報を出力する
-
-		// TODO  未実装：ユーザ情報をリクエストスコープにセットしてjspにフォワード
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-			 // リクエストパラメータの文字コードを指定 文字化け防止！
-	      request.setCharacterEncoding("UTF-8");
-	      
-	      
-	
-		
-	      request.setAttribute("user", user);
+	    HttpSession session = request.getSession();
 
-		// ユーザ一覧のjspにフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserList.jsp");
+
+	    if(session.getAttribute("userInfo") == null) {
+
+
+	    	// loginサーブレットにリダイレクト
+    		response.sendRedirect("loginServlet");
+    		return;
+
+	    }
+
+
+    	// リクエストパラメータの文字コードを指定 文字化け防止！
+        request.setCharacterEncoding("UTF-8");
+
+    	String id = request.getParameter("id");
+
+
+    	// ユーザ一覧情報を取得
+		UserDao userDao = new UserDao();
+		User userData = userDao.UserData(id);
+
+		// リクエストスコープにユーザー情報をセット
+		request.setAttribute("userData", userData);
+
+
+
+    	// ↓ フォワード UserData.jspを表示させる！
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserData.jsp");
 		dispatcher.forward(request, response);
 	}
 
 
 }
+
+
 

@@ -14,11 +14,19 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br><br>
 <h1 class="center">ユーザー削除確認</h1>
 
-ログインID：kdfdsd
+<form action="UserDeleteServlet" method="post">
+
+<input type="hidden" name="id" value="${userData.id}">
+
+ログインID：${userData.loginId}
 <br>
 を本当に削除してよろしいでしょうか。
 <br><br>
-<input type="submit" name="submit1" value="キャンセル">
+<input type="button" name="submit1" value="キャンセル"  onclick="location.href='UserListServlet'">
 <input type="submit" name="submit2" value="　OK　">
+
+</form>
+
+
 </body>
 </html>

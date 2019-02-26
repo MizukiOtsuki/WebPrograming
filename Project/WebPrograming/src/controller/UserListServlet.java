@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDao;
 import model.User;
@@ -28,10 +29,27 @@ public class UserListServlet extends HttpServlet {
 
     }
 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+
+	    HttpSession session = request.getSession();
+
+
+	    if(session.getAttribute("userInfo") == null) {
+
+
+	    	// loginサーブレットにリダイレクト
+    		response.sendRedirect("loginServlet");
+    		return;
+
+	    }
+
+
 
 		// ユーザ一覧情報を取得
 				UserDao userDao = new UserDao();
@@ -39,7 +57,6 @@ public class UserListServlet extends HttpServlet {
 
 				// リクエストスコープにユーザ一覧情報をセット
 				request.setAttribute("userList", userList);
-
 
 
 		// ↓ フォワード UserList.jspを表示させる！
@@ -50,8 +67,10 @@ public class UserListServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 
 	}
 

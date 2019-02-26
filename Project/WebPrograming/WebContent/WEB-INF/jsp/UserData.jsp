@@ -14,16 +14,18 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br><br>
 <h1 class="center">ユーザー情報詳細参照</h1>
 <br>
-ログインID　　　　　kdfdsd
+
+<input type="hidden" name="id" value="${userData.loginId}">
+ログインID　　　　　${userData.loginId}
 <br><br>
 
-ユーザー名　　　　　大槻瑞貴
+ユーザー名　　　　　${userData.name}
 <br><br>
-生年月日　　　　　　1993年11月06日
+生年月日　　　　　　${userData.birthDate}
 <br><br>
-登録日時　　　　　　2019年02月05日 15:00
+登録日時　　　　　　${userData.createDate}
 <br><br>
-更新日時　　　　　　2019年02月05日 15:30
+更新日時　　　　　　${userData.updateDate}
 <br><br>
 <a href="UserListServlet">戻る</a>
 

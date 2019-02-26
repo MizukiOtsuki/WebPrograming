@@ -15,21 +15,38 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br><br>
 <h1 class="center">ユーザー情報更新</h1>
 
-ログインID　　　　　　　　kdfdsd
+
+<form action="updateServlet" method="post">
+
+<input type="hidden" name="id" value="${userData.loginId}">
+
+
+
+ログインID　　　　　　　　${userData.loginId}
 <br><br>
 
-パスワード　　　　　　　　<input type="password" name="pass">
+パスワード　　　　　　　　<input type="password" name="password">
 <br><br>
 
-パスワード(確認)　　　　　<input type="password" name="pass">
+パスワード(確認)　　　　　<input type="password" name="password2">
 <br><br>
 
-ユーザー名　　　　　　　　<input type="text" name="name">
+ユーザー名　　　　　　　　<input type="text" name="name" value="${userData.name}">
 <br><br>
 
-生年月日　　　　　　　　　<input type="date" name="example">
+生年月日　　　　　　　　　<input type="date" name="birthDate" value="${userData.birthDate}">
 <br><br>
 <input type="submit" name="submit" value="　更新　">
+
+</form>
+<br>
+
+<c:if test="${errMsg != null}" >
+
+		  ${errMsg}
+
+	</c:if>
+
 <br><br>
 <a href="UserListServlet">戻る</a>
 

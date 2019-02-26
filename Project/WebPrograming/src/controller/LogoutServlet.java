@@ -32,7 +32,7 @@ public class LogoutServlet extends HttpServlet {
 		// ログイン時に保存したセッション内のユーザ情報を削除
 		session.removeAttribute("userInfo");
 
-		// ログインのサーブレットにリダイレクト
+		// loginサーブレットにリダイレクト
 		response.sendRedirect("loginServlet");
 	}
 }

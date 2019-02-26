@@ -37,11 +37,11 @@ public class loginServlet extends HttpServlet {
 		// HttpSessionインスタンスの取得
 	    HttpSession session = request.getSession();
 
-
+	    
 	    if(session.getAttribute("userInfo") != null) {
 
 
-	    	// ユーザ一覧のサーブレットにリダイレクト
+	    	// UserListサーブレットにリダイレクト
     		response.sendRedirect("UserListServlet");
     		return;
 
@@ -86,7 +86,7 @@ public class loginServlet extends HttpServlet {
     		HttpSession session = request.getSession();
     		session.setAttribute("userInfo", user);
 
-    		// ユーザ一覧のサーブレットにリダイレクト
+    		// UserListサーブレットにリダイレクト
     		response.sendRedirect("UserListServlet");
 
 	}
