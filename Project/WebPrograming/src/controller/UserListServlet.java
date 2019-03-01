@@ -70,7 +70,25 @@ public class UserListServlet extends HttpServlet {
 
 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			request.setCharacterEncoding("UTF-8");
 
+
+			String loginIdP = request.getParameter("loginId");
+			String nameP = request.getParameter("name");
+			String birthDateS = request.getParameter("birthDateS");
+			String birthDateE = request.getParameter("birthDateE");
+
+
+
+			UserDao userDao = new UserDao();
+			List<User> userList = userDao.findSearch(loginIdP, nameP,birthDateS,birthDateE);
+
+			// リクエストスコープにユーザ一覧情報をセット
+			request.setAttribute("userList", userList);
+
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserList.jsp");
+			dispatcher.forward(request, response);
 
 	}
 

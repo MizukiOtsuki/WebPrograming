@@ -9,6 +9,8 @@
 <title>UserList</title>
 </head>
 <body>
+
+<%-- ログアウトするリンク --%>
 ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <br>
 <h1 class="center">ユーザー覧</h1>
@@ -26,8 +28,8 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 ユーザー名　　　<input type="text" name="name">
 
 <br><br>
-生年月日　　　　<input type="date" name="example">　～
-<input type="date" name="example">
+生年月日　　　　<input type="date" name="birthDateS">　～
+<input type="date" name="birthDateE">
 
 <br><br>
 <input type="submit" value="　検索　">
@@ -44,6 +46,7 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <th>　　　　　　　　　</th>
 </tr>
 
+
 <c:forEach var="user" items="${userList}">
 
 <tr>
@@ -53,9 +56,21 @@ ${userInfo.name} さん　　<a href="LogoutServlet">ログアウト</a>
 <td>
 
 
+<%-- 詳細ボタンは管理者ユーザー以外のを全て表示させる --%>
 <input type="button" name="submit1" value="　詳細　" onclick="location.href='UserDataServlet?id=${user.loginId}'">
+
+
+<%-- 更新ボタンは管理者またはログインしたユーザーと一致するユーザーのみに表示させる --%>
+<c:if test="${userInfo.loginId == 'admin' || userInfo.loginId == user.loginId}">
 <input type="button" name="submit2" value="　更新　" onclick="location.href='updateServlet?id=${user.loginId}'">
+
+</c:if>
+
+<%-- 削除ボタンは管理者しか表示させないようにする --%>
+<c:if test="${userInfo.loginId == 'admin'}">
 <input type="submit" name="submit3" value="　削除　" onclick="location.href='UserDeleteServlet?id=${user.loginId}'">
+</c:if>
+
 </td>
 </tr>
 
